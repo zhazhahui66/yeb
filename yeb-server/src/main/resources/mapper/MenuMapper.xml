@@ -30,6 +30,15 @@
             <result column="enabled2" property="enabled" />
         </collection>
     </resultMap>
+
+    <resultMap id="MenusWithRoles" type="com.hk01.server.pojo.Menu" extends="BaseResultMap">
+        <collection property="roles" ofType="com.hk01.server.pojo.Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
@@ -63,5 +72,24 @@
             ar.adminId = #{id}
           AND
             m2.enabled = TRUE
+    </select>
+    
+    <select id="getMenusWithRoles" resultMap="MenusWithRoles">
+        SELECT
+            m.*,
+            r.id as rid,
+            r.`name` as rname,
+            r.nameZh as nameZh
+
+        FROM
+            t_menu m,
+            t_role r,
+            t_menu_role tr
+
+        WHERE
+            m.id = tr.mid
+          AND
+            r.id = tr.rid
+        ORDER BY m.id
     </select>
 </mapper>

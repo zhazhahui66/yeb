@@ -11,6 +11,18 @@ spring:
     url: jdbc:mysql://localhost:3306/yeb?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     password: root
     username: 123
+  redis:
+    database: 0
+    timeout: 10000ms
+    host: localhost
+    port: 6379
+    password:
+    lettuce:
+      pool:
+        max-active: 1024
+        max-wait: 10000ms
+        max-idle: 200
+        min-idle: 5
 mybatis-plus:
   type-aliases-package: com.kh01.server.pojo
   mapper-locations: classpath*:/mapper/*Mapper.xml
