@@ -1,0 +1,30 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    hikari:
+      minimum-idle: 5
+      max-lifetime: 180000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yeb?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    password: root
+    username: 123
+mybatis-plus:
+  type-aliases-package: com.kh01.server.pojo
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: false
+logging:
+  level:
+    com.hk01.server.mapper: debug
+jwt:
+  # Jwt存储的请求头
+  tokenHeader: Authorization
+  # Jwt加密秘钥
+  secret: yeb-secret
+  # Jwt 的超期限时间（60*60）*24
+  expiration: 604800
+  # Jwt负载中拿到开头
+  tokenHead: Bearer
