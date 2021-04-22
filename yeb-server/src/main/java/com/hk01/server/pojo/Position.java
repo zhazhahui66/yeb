@@ -1,14 +1,20 @@
 package com.hk01.server.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -19,7 +25,10 @@ import lombok.EqualsAndHashCode;
  * @since 2021-04-04
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = false,of = "name")
+@Accessors(chain = true)
 @TableName("t_position")
 @ApiModel(value="Position对象", description="")
 public class Position implements Serializable {
@@ -29,12 +38,14 @@ public class Position implements Serializable {
     @ApiModelProperty(value = "id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
+    @Excel(name = "职位")
     @ApiModelProperty(value = "职位")
+    @NonNull
     private String name;
 
     @ApiModelProperty(value = "创建时间")
-    private Date createDate;
+    @JsonFormat(pattern = "yyy-MM-dd", timezone = "Asia/Shanghai")
+    private LocalDateTime createDate;
 
     @ApiModelProperty(value = "是否启用")
     private Boolean enabled;

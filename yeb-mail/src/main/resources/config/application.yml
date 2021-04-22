@@ -1,0 +1,15 @@
+spring:
+  mail:
+    host: smtp.163.com
+    protocol: smtp
+    default-encoding: utf-8
+    password: ONRMOPAWZIZDRVLT
+    username: mhkl1314@163.com
+    port: 25
+  rabbitmq:
+    username: admin
+    host: 120.77.144.252
+    password: admin
+    port: 5672
+server:
+  port: 8082

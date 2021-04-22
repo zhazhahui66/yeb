@@ -1,6 +1,8 @@
 package com.hk01.server.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -43,13 +45,13 @@ public class MailLog implements Serializable {
     private Integer count;
 
     @ApiModelProperty(value = "重试时间")
-    private Date tryTime;
+    private LocalDateTime tryTime;
 
     @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @ApiModelProperty(value = "更新时间")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
 
 }
